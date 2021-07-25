@@ -25,18 +25,18 @@ public class EmployeeServices implements IEmployeeServices {
     @Override
     public Employee updateDB(Integer id, Employee employee) {
         return employeeRepository.findById(id).map(employee1 -> {
-            employee1.set_name(employee.get_name());
-            employee1.set_department(employee.get_department());
-            employee1.set_gender(employee.get_gender());
-            employee1.set_salary(employee.get_salary());
-            employee1.set_profilePic(employee.get_profilePic());
-            employee1.set_startdate(employee.get_startdate());
+            employee1.setName(employee.getName());
+            employee1.setDepartment(employee.getDepartment());
+            employee1.setGender(employee.getGender());
+            employee1.setSalary(employee.getSalary());
+            employee1.setProfilePic(employee.getProfilePic());
+            employee1.setStartdate(employee.getStartdate());
             return employeeRepository.save(employee1);
         }).get();
     }
 
     @Override
-    public void deleteFromDB(Employee employee) {
-
+    public void deleteFromDB(Integer id) {
+        employeeRepository.deleteById(id);
     }
 }

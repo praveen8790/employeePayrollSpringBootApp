@@ -1,5 +1,6 @@
 package com.example.employeepayrollspring.entity;
 
+import com.example.employeepayrollspring.DTO.Dto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,12 +17,12 @@ import javax.persistence.Id;
 public class Employee {
 
     private Integer id;
-    private String _name;
-    private String _gender;
-    private String[] _department;
-    private String _salary;
-    private String _profilePic;
-    private String _startdate;
+    private String name;
+    private String gender;
+    private String[] department;
+    private String salary;
+    private String profilePic;
+    private String startdate;
 
     public void setId(Integer id) {
         this.id = id;
@@ -34,11 +35,20 @@ public class Employee {
     }
 
     public Employee(String _name, String _gender, String[] _department, String _salary, String _profilePic, String _startdate) {
-        this._name = _name;
-        this._gender = _gender;
-        this._department = _department;
-        this._salary = _salary;
-        this._profilePic = _profilePic;
-        this._startdate = _startdate;
+        this.name = _name;
+        this.gender = _gender;
+        this.department = _department;
+        this.salary = _salary;
+        this.profilePic = _profilePic;
+        this.startdate = _startdate;
+    }
+    public  Employee(Dto dto){
+        this.id= Integer.valueOf(dto.getId());
+        this.name = dto.get_name();
+        this.gender = dto.get_gender();
+        this.department = dto.get_department();
+        this.salary = dto.get_salary();
+        this.profilePic = dto.get_profilePic();
+        this.startdate = dto.get_startdate();
     }
 }

@@ -6,9 +6,10 @@ import java.util.List;
 
 public interface IEmployeeServices {
     void addToDB(Employee employee);
-    void deleteFromDB(Employee employee);
 
     List<Employee> get();
 
     Employee updateDB(Integer id, Employee employee);
+
+    void deleteFromDB(Integer id);
 }
