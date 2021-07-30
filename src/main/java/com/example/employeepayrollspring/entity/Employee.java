@@ -5,21 +5,27 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Setter
 @Getter
 @NoArgsConstructor
 @Entity
+@Table(name = "employee")
 public class Employee {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String name;
     private String gender;
-    private String[] department;
+
+
+    @ElementCollection
+    @CollectionTable(name = "employee_department",joinColumns = @JoinColumn(name = "id"))
+    @Column(name = "departments")
+    private List<String> department;
+
     private String salary;
     private String profilePic;
     private String startdate;
@@ -28,13 +34,12 @@ public class Employee {
         this.id = id;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+
     public Integer getId() {
         return id;
     }
 
-    public Employee(String _name, String _gender, String[] _department, String _salary, String _profilePic, String _startdate) {
+    public Employee(String _name, String _gender, List<String> _department, String _salary, String _profilePic, String _startdate) {
         this.name = _name;
         this.gender = _gender;
         this.department = _department;
